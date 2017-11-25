@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'debug' => env('APP_DEBUG'),
+  'debug' => env('APP_DEBUG', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -130,6 +130,8 @@ return [
     */
 
     'log' => 'single',
+  'log_level' => env('APP_LOG_LEVEL', 'debug'),
+
 
     /*
     |--------------------------------------------------------------------------
@@ -328,6 +330,14 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
+
+
+      /*
+       * Package Service Providers...
+       */
+    //Nwidart\Modules\LaravelModulesServiceProvider::class,
+    //Laratrust\LaratrustServiceProvider::class,
+      //
         /*
          * Application Service Providers...
          */
@@ -338,24 +348,27 @@ return [
         App\Providers\SettingServiceProvider::class,
         App\Providers\CustomBladeServiceProvider::class,
 
-        Sroutier\EloquentLDAP\Providers\EloquentLDAPServiceProvider::class,
+        //Sroutier\EloquentLDAP\Providers\EloquentLDAPServiceProvider::class,
 
         Barryvdh\Debugbar\ServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
         YAAP\Theme\ThemeServiceProvider::class,
-        Zizaco\Entrust\EntrustServiceProvider::class,
+        //Zizaco\Entrust\EntrustServiceProvider::class,
 //        Zofe\Rapyd\RapydServiceProvider::class,
         Baum\Providers\BaumServiceProvider::class,
         Sroutier\LESKModules\ModulesServiceProvider::class,
         Mgallegos\LaravelJqgrid\LaravelJqgridServiceProvider::class,
         Creativeorange\Gravatar\GravatarServiceProvider::class,
-        Tylercd100\LERN\LERNServiceProvider::class,
+        //Tylercd100\LERN\LERNServiceProvider::class,
         Arcanedev\Settings\SettingsServiceProvider::class,
         Libern\SqlLogging\SqlLoggingServiceProvider::class,
         Jenssegers\Agent\AgentServiceProvider::class,
         Conner\Tagging\Providers\TaggingServiceProvider::class,
+
+    //Yajra\Datatables\DatatablesServiceProvider::class
+
 
     ),
 
@@ -410,17 +423,21 @@ return [
         'Debugbar'    => Barryvdh\Debugbar\Facade::class,
         'Flash'       => Laracasts\Flash\Flash::class,
         'Theme'       => YAAP\Theme\Facades\Theme::class,
-        'Entrust'     => Zizaco\Entrust\EntrustFacade::class,
+        //'Entrust'     => Zizaco\Entrust\EntrustFacade::class,
         'MenuBuilder' => App\Facades\MenuBuilderFacade::class,
         'Module'      => Sroutier\LESKModules\Facades\Module::class,
         'GridRender'  => Mgallegos\LaravelJqgrid\Facades\GridRender::class,
         'GridEncoder' => Mgallegos\LaravelJqgrid\Facades\GridEncoder::class,
         'Gravatar'    => Creativeorange\Gravatar\Facades\Gravatar::class,
-        'LERN'        => Tylercd100\LERN\Facades\LERN::class,
+    //'Datatables ' => Yajra\Datatables\DatatablesServiceProvider::class,
+        //'LERN'        => Tylercd100\LERN\Facades\LERN::class,
         // Commented out to force the usage of the custom Setting facade below.
 //        'Setting'     => Arcanedev\Settings\Facades\Setting::class,
         'Setting'     => App\Facades\SettingFacade::class,
         'Agent'         => Jenssegers\Agent\Facades\Agent::class,
+    //'Laratrust'   => Laratrust\LaratrustFacade::class,
+
+
 
     ],
 

@@ -25,7 +25,7 @@ auth.email_validation=false
 auth.enable_user_on_validation=false
 auth.enable_remember_token=true
 
-eloquent-ldap.enabled=true
+eloquent-ldap.enabled=false
 eloquent-ldap.debug=false
 eloquent-ldap.server_type=MSAD
 eloquent-ldap.create_accounts=true

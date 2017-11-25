@@ -257,9 +257,9 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
         // If the auth_type is not explicitly set by the call function or module,
         // set it to the internal value.
-        if (!array_key_exists('auth_type', $attributes) || ("" == ($attributes['auth_type'])) ) {
+        /*if (!array_key_exists('auth_type', $attributes) || ("" == ($attributes['auth_type'])) ) {
             $attributes['auth_type'] = Setting::get('eloquent-ldap.label_internal');
-        }
+        }*/
 
         // Call original create method from parent
         $user = parent::create($attributes);
