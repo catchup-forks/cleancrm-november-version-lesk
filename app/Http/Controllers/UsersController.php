@@ -461,7 +461,7 @@ class UsersController extends Controller
         $takeNumb = $request->input('t');
         $userCollection = \App\User::skip($skipNumb)->take($takeNumb)
           ->get(['id', 'first_name', 'last_name', 'username'])
-          ->lists('full_name_and_username', 'id');
+          ->pluck('full_name_and_username', 'id');
         $userList = $userCollection->all();
         return $userList;
     }

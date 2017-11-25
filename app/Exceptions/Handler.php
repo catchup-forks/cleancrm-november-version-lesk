@@ -21,6 +21,10 @@ class Handler extends ExceptionHandler
      */
     protected $dontReport = [
       \Symfony\Component\HttpKernel\Exception\HttpException::class,
+      AuthorizationException::class,
+      HttpException::class,
+      ModelNotFoundException::class,
+      ValidationException::class,
     ];
 
     /**
@@ -33,6 +37,7 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $e)
     {
+        /*
         if ($this->shouldReport($e)) {
 
             //Check to see if LERN is installed otherwise you will not get an exception.
@@ -50,11 +55,13 @@ class Handler extends ExceptionHandler
 
             }
         }
+        */
         return parent::report($e);
     }
 
     private function setLERNNotificationFormat()
     {
+        /*
         //Change the subject
         LERN::setSubject("[" . Setting::get('lern.notify.channel') . "]: An Exception was thrown! (" . date("D M d, Y G:i",
             time()) . " UTC)");
@@ -111,6 +118,7 @@ class Handler extends ExceptionHandler
             $msg = $view->render();
             return $msg;
         });
+        */
     }
 
     /**

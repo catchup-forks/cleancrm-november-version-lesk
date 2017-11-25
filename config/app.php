@@ -11,6 +11,13 @@ return [
     |
     */
   'debug' => env('APP_DEBUG', false),
+
+
+  'env' => env('APP_ENV', 'production'),
+
+
+
+
     /*
     |--------------------------------------------------------------------------
     | Application URL
@@ -107,8 +114,8 @@ return [
     | Available Settings: "single", "daily", "syslog", "errorlog"
     |
     */
-  'log' => 'single',
-  'log_level' => env('APP_LOG_LEVEL', 'debug'),
+  //'log' => 'single',
+  //'log_level' => env('APP_LOG_LEVEL', 'debug'),
     /*
     |--------------------------------------------------------------------------
     | Permission and User relationship table
@@ -267,13 +274,11 @@ return [
       /*
        * Laravel Framework Service Providers...
        */
-    Illuminate\Foundation\Providers\ArtisanServiceProvider::class,
     Illuminate\Auth\AuthServiceProvider::class,
     Illuminate\Broadcasting\BroadcastServiceProvider::class,
     Illuminate\Bus\BusServiceProvider::class,
     Illuminate\Cache\CacheServiceProvider::class,
     Illuminate\Foundation\Providers\ConsoleSupportServiceProvider::class,
-    Illuminate\Routing\ControllerServiceProvider::class,
     Illuminate\Cookie\CookieServiceProvider::class,
     Illuminate\Database\DatabaseServiceProvider::class,
     Illuminate\Encryption\EncryptionServiceProvider::class,
@@ -352,7 +357,7 @@ return [
     'Input' => Illuminate\Support\Facades\Input::class,
     'Inspiring' => Illuminate\Foundation\Inspiring::class,
     'Lang' => Illuminate\Support\Facades\Lang::class,
-    'Log' => Illuminate\Support\Facades\Log::class,
+    //'Log' => Illuminate\Support\Facades\Log::class,
     'Mail' => Illuminate\Support\Facades\Mail::class,
     'Password' => Illuminate\Support\Facades\Password::class,
     'Queue' => Illuminate\Support\Facades\Queue::class,
