@@ -1,7 +1,5 @@
 <?php
-
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Default Authentication Driver
@@ -14,9 +12,7 @@ return [
     | Supported: "database", "eloquent"
     |
     */
-
-    'driver' => 'eloquent',
-
+  'driver' => 'eloquent',
     /*
     |--------------------------------------------------------------------------
     | Authentication Model
@@ -27,9 +23,7 @@ return [
     | is often just the "User" model but you may use whatever you like.
     |
     */
-
-    'model' => App\User::class,
-
+  'model' => App\User::class,
     /*
     |--------------------------------------------------------------------------
     | Authentication Table
@@ -40,9 +34,7 @@ return [
     | default value but you may easily change it to any table you like.
     |
     */
-
-    'table' => 'users',
-
+  'table' => 'users',
     /*
     |--------------------------------------------------------------------------
     | Password Reset Settings
@@ -57,14 +49,11 @@ return [
     | they have less time to be guessed. You may change this as needed.
     |
     */
-
-    'password' => [
-        'email' => 'emails.html.password_reset',
-        'table' => 'password_resets',
-        'expire' => 60,
-    ],
-
-
+  'password' => [
+    'email' => 'emails.html.password_reset',
+    'table' => 'password_resets',
+    'expire' => 60,
+  ],
     /*
     |--------------------------------------------------------------------------
     | Default account status
@@ -75,9 +64,7 @@ return [
     | enable them.
     |
     */
-    'enable_user_on_create' => env('auth.enable_user_on_create', true),
-
-
+  'enable_user_on_create' => env('auth.enable_user_on_create', true),
     /*
     |--------------------------------------------------------------------------
     | Email validation
@@ -87,9 +74,7 @@ return [
     | submitted, with a validation link.
     |
     */
-    'email_validation' => env('auth.email_validation', false),
-
-
+  'email_validation' => env('auth.email_validation', false),
     /*
     |--------------------------------------------------------------------------
     | Enable user on validation
@@ -99,9 +84,7 @@ return [
     | validation test?
     |
     */
-    'enable_user_on_validation' => env('auth.enable_user_on_validation', false),
-
-
+  'enable_user_on_validation' => env('auth.enable_user_on_validation', false),
     /*
     |--------------------------------------------------------------------------
     | Enable remember token
@@ -110,6 +93,5 @@ return [
     | Should the system allow a user to set the remember token ?
     |
     */
-    'enable_remember_token' => env('auth.enable_remember_token', true),
-
+  'enable_remember_token' => env('auth.enable_remember_token', true),
 ];

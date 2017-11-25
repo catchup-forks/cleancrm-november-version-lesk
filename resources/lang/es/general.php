@@ -1,9 +1,6 @@
 <?php
-
 return [
-
-    'text'              => [
-        'welcome'   => 'Bienvenido',
-    ],
-
+  'text' => [
+    'welcome' => 'Bienvenido',
+  ],
 ];

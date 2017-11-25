@@ -14,10 +14,16 @@ class Permission extends EntrustPermission
      */
     protected $fillable = ['name', 'display_name', 'description', 'enabled'];
 
-
-    public function routes()
+    /**
+     * @param $perm
+     * @return bool
+     */
+    public static function isForced($perm)
     {
-        return $this->hasMany('App\Models\Route');
+        if ('basic-authenticated' == $perm->name) {
+            return true;
+        }
+        return false;
     }
 
     public function menu()
@@ -71,7 +77,7 @@ class Permission extends EntrustPermission
     {
         // Protect the guest-only and basic-authenticated permissions from edits.
         if (('guest-only' == $this->name) ||
-            ('basic-authenticated' == $this->name)
+          ('basic-authenticated' == $this->name)
         ) {
             return false;
         }
@@ -86,16 +92,15 @@ class Permission extends EntrustPermission
     {
         // Protect the guest-only, basic-authenticated and open-to-all permissions from deletion.
         if (('guest-only' == $this->name) ||
-            ('basic-authenticated' == $this->name) ||
-            ('open-to-all' == $this->name) ||
-            ($this->is_used)
+          ('basic-authenticated' == $this->name) ||
+          ('open-to-all' == $this->name) ||
+          ($this->is_used)
         ) {
             return false;
         }
         // Otherwise
         return true;
     }
-
 
     /**
      * @return bool
@@ -105,21 +110,7 @@ class Permission extends EntrustPermission
         if ('guest-only' == $this->name) {
             return false;
         }
-
         return true;
-    }
-
-    /**
-     * @param $perm
-     * @return bool
-     */
-    public static function isForced($perm)
-    {
-        if ('basic-authenticated' == $perm->name) {
-            return true;
-        }
-
-        return false;
     }
 
     /**
@@ -127,27 +118,15 @@ class Permission extends EntrustPermission
      */
     public function assignRoutes(array $attributes = [])
     {
-        if (array_key_exists('routes', $attributes) && (is_array($attributes['routes'])) && ("" != $attributes['routes'][0])) {
+        if (array_key_exists('routes',
+            $attributes) && (is_array($attributes['routes'])) && ("" != $attributes['routes'][0])) {
             $this->clearRouteAssociation();
-
             foreach ($attributes['routes'] as $id) {
                 $route = \App\Models\Route::find($id);
                 $this->routes()->save($route);
             }
         } else {
             $this->clearRouteAssociation();
-        }
-    }
-
-    /**
-     * @param array $attributes
-     */
-    public function assignRoles(array $attributes = [])
-    {
-        if (array_key_exists('roles', $attributes) && (is_array($attributes['roles'])) && ("" != $attributes['roles'][0])) {
-            $this->roles()->sync($attributes['roles']);
-        } else {
-            $this->roles()->sync([]);
         }
     }
 
@@ -158,5 +137,23 @@ class Permission extends EntrustPermission
             $route->save();
         }
         $this->save();
+    }
+
+    public function routes()
+    {
+        return $this->hasMany('App\Models\Route');
+    }
+
+    /**
+     * @param array $attributes
+     */
+    public function assignRoles(array $attributes = [])
+    {
+        if (array_key_exists('roles',
+            $attributes) && (is_array($attributes['roles'])) && ("" != $attributes['roles'][0])) {
+            $this->roles()->sync($attributes['roles']);
+        } else {
+            $this->roles()->sync([]);
+        }
     }
 }

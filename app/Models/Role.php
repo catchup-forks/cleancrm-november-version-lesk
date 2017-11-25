@@ -12,6 +12,17 @@ class Role extends EntrustRole
      */
     protected $fillable = ['name', 'display_name', 'description', 'resync_on_login', 'enabled'];
 
+    /**
+     * @param $role
+     * @return bool
+     */
+    public static function isForced($role)
+    {
+        if ('users' == $role->name) {
+            return true;
+        }
+        return false;
+    }
 
     /**
      * @return bool
@@ -22,7 +33,6 @@ class Role extends EntrustRole
         if (('admins' == $this->name) || ('users' == $this->name)) {
             return false;
         }
-
         return true;
     }
 
@@ -35,7 +45,6 @@ class Role extends EntrustRole
         if (('admins' == $this->name) || ('users' == $this->name)) {
             return false;
         }
-
         return true;
     }
 
@@ -48,7 +57,6 @@ class Role extends EntrustRole
         if ('admins' == $this->name) {
             return false;
         }
-
         return true;
     }
 
@@ -61,21 +69,7 @@ class Role extends EntrustRole
         if ('users' == $this->name) {
             return false;
         }
-
         return true;
-    }
-
-    /**
-     * @param $role
-     * @return bool
-     */
-    public static function isForced($role)
-    {
-        if ('users' == $role->name) {
-            return true;
-        }
-
-        return false;
     }
 
     public function hasPerm(Permission $perm)

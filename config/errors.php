@@ -1,6 +1,5 @@
 <?php
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Purge retention
@@ -10,8 +9,6 @@ return [
     | 30 days.
     |
     */
-
-    'purge_retention' => env('errors.purge_retention', 30),
-
+  'purge_retention' => env('errors.purge_retention', 30),
 ];
 

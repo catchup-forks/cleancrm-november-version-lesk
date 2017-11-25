@@ -13,12 +13,11 @@ class Error extends ExceptionModel
         return $this->belongsTo(User::class);
     }
 
-//    /**
-//     * @return string
-//     */
-//    public function getTraceAttribute()
-//    {
-//        return $this->Label;
-//    }
-
+    //    /**
+    //     * @return string
+    //     */
+    //    public function getTraceAttribute()
+    //    {
+    //        return $this->Label;
+    //    }
 }

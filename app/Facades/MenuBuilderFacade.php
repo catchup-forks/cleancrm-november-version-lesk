@@ -9,7 +9,6 @@ namespace App\Facades;
  * @license GPLv3
  * @package Sroutier\MenuBuilder
  */
-
 use Illuminate\Support\Facades\Facade;
 
 class MenuBuilderFacade extends Facade

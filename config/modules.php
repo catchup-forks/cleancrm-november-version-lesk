@@ -1,7 +1,5 @@
 <?php
-
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Path to Modules
@@ -13,10 +11,7 @@ return [
     |
     | See 'path_public_assets' setting.
     */
-
-    'path' => app_path('Modules'), // Set to app/Modules
-
-
+  'path' => app_path('Modules'), // Set to app/Modules
     /*
     |--------------------------------------------------------------------------
     | Path to public assets
@@ -26,9 +21,7 @@ return [
     | to be available under the public directory.
     |
     */
-
-    'path_public_assets' => public_path('vendor/lesk-modules'), // Set to public/vendor/lesk-modules
-
+  'path_public_assets' => public_path('vendor/lesk-modules'), // Set to public/vendor/lesk-modules
     /*
 	|--------------------------------------------------------------------------
 	| Modules Default State: Enabled
@@ -39,9 +32,7 @@ return [
     | then the module will default to being 'disabled'.
 	|
 	*/
-
-    'enabled' => false,
-
+  'enabled' => false,
     /*
 	|--------------------------------------------------------------------------
 	| Modules Default State: Initialized
@@ -52,9 +43,7 @@ return [
     | then the module will default to being 'non-initialized'.
 	|
 	*/
-
-    'initialized' => false,
-
+  'initialized' => false,
     /*
     |--------------------------------------------------------------------------
     | Modules Base Namespace
@@ -65,9 +54,7 @@ return [
     | by the module:make Artisan command.
     |
     */
-
-    'namespace' => 'App\Modules\\',
-
+  'namespace' => 'App\Modules\\',
     /*
     |--------------------------------------------------------------------------
     | Default Module Driver
@@ -80,9 +67,7 @@ return [
     | Supported: "local", "custom"
     |
     */
-
-    'driver' => 'local',
-
+  'driver' => 'local',
     /*
     |--------------------------------------------------------------------------
     | Custom Module Driver
@@ -93,6 +78,5 @@ return [
     | properties somewhere not supported by default.
     |
     */
-
-    'custom_driver' => 'App\Repositories\Modules\CustomRepository',
+  'custom_driver' => 'App\Repositories\Modules\CustomRepository',
 ];

@@ -1,6 +1,5 @@
 <?php namespace App\Libraries;
 
-
 use InvalidArgumentException;
 
 class FlashLevel
@@ -19,10 +18,10 @@ class FlashLevel
      * @var array $levels Flash levels
      */
     protected static $levels = array(
-        200 => 'INFO',
-        250 => 'SUCCESS',
-        300 => 'WARNING',
-        400 => 'ERROR',
+      200 => 'INFO',
+      250 => 'SUCCESS',
+      300 => 'WARNING',
+      400 => 'ERROR',
     );
 
     /**
@@ -44,9 +43,9 @@ class FlashLevel
     public static function getLevelName($level)
     {
         if (!isset(static::$levels[$level])) {
-            throw new InvalidArgumentException('Level "'.$level.'" is not defined, use one of: '.implode(', ', array_keys(static::$levels)));
+            throw new InvalidArgumentException('Level "' . $level . '" is not defined, use one of: ' . implode(', ',
+                array_keys(static::$levels)));
         }
-
         return static::$levels[$level];
     }
 

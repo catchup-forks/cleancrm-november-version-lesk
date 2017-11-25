@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CreateAuditTable extends Migration
 {
@@ -22,7 +22,7 @@ class CreateAuditTable extends Migration
             $table->string('data_parser')->nullable()->default(null);
             $table->timestamps();
 
-//            $table->foreign('user_id')->references('id')->on('users');
+            //            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

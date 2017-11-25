@@ -1,6 +1,5 @@
 <?php namespace App\Traits;
 
-
 trait BaseModelTrait
 {
 
@@ -14,21 +13,14 @@ trait BaseModelTrait
     public static function resolve($id, $column = "name")
     {
         $modelObj = null;
-
         if ($id instanceof self) {
             $modelObj = $id;
-        }
-        elseif (is_numeric($id))
-        {
+        } elseif (is_numeric($id)) {
             $modelObj = self::find($id);
+        } else {
+            $modelObj = self::where($column, '=', $id)->first();
         }
-        else
-        {
-            $modelObj = self::where($column , '=', $id)->first();
-        }
-
         return $modelObj;
     }
-
 
 }

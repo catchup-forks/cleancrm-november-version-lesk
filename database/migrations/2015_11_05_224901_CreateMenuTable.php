@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CreateMenuTable extends Migration
 {
@@ -24,12 +24,10 @@ class CreateMenuTable extends Migration
             $table->unsignedInteger('parent_id')->default(0);
             $table->unsignedInteger('route_id')->nullable()->default(null);
             $table->unsignedInteger('permission_id')->nullable()->default(null);
-
             $table->timestamps();
-
-//            $table->foreign('parent_id')->references('id')->on('menus');
-//            $table->foreign('route_id')->references('id')->on('routes');
-//            $table->foreign('permission_id')->references('id')->on('permissions');
+            //            $table->foreign('parent_id')->references('id')->on('menus');
+            //            $table->foreign('route_id')->references('id')->on('routes');
+            //            $table->foreign('permission_id')->references('id')->on('permissions');
         });
     }
 

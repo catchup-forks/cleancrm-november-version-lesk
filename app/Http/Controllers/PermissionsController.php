@@ -38,12 +38,10 @@ class PermissionsController extends Controller
     public function index()
     {
         //TODO: Warn of any permission in our DB that is not used (assigned to a route) in the app.
-
-        Audit::log(Auth::user()->id, trans('admin/permissions/general.audit-log.category'), trans('admin/permissions/general.audit-log.msg-index'));
-
+        Audit::log(Auth::user()->id, trans('admin/permissions/general.audit-log.category'),
+          trans('admin/permissions/general.audit-log.msg-index'));
         $page_title = trans('admin/permissions/general.page.index.title');
         $page_description = trans('admin/permissions/general.page.index.description');
-
         $perms = $this->permission->pushCriteria(new PermissionsByNamesAscending())->paginate(20);
         return view('admin.permissions.index', compact('perms', 'page_title', 'page_description'));
     }
@@ -55,12 +53,11 @@ class PermissionsController extends Controller
     public function show($id)
     {
         $perm = $this->permission->find($id);
-
-        Audit::log(Auth::user()->id, trans('admin/permissions/general.audit-log.category'), trans('admin/permissions/general.audit-log.msg-show', ['name' => $perm->name]));
-
+        Audit::log(Auth::user()->id, trans('admin/permissions/general.audit-log.category'),
+          trans('admin/permissions/general.audit-log.msg-show', ['name' => $perm->name]));
         $page_title = trans('admin/permissions/general.page.show.title');
-        $page_description = trans('admin/permissions/general.page.show.description', ['name' => $perm->name]); // "Displaying permission";
-
+        $page_description = trans('admin/permissions/general.page.show.description',
+          ['name' => $perm->name]); // "Displaying permission";
         return view('admin.permissions.show', compact('perm', 'page_title', 'page_description'));
     }
 
@@ -71,9 +68,7 @@ class PermissionsController extends Controller
     {
         $page_title = trans('admin/permissions/general.page.create.title');
         $page_description = trans('admin/permissions/general.page.create.description');
-
         $perm = new \App\Models\Permission();
-
         return view('admin.permissions.create', compact('perm', 'page_title', 'page_description'));
 
     }
@@ -85,26 +80,23 @@ class PermissionsController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, array('name' => 'required|unique:permissions',
-                                        'display_name' => 'required'));
-
+        $this->validate($request, array(
+          'name' => 'required|unique:permissions',
+          'display_name' => 'required'
+        ));
         $attributes = $request->all();
-
-        Audit::log(Auth::user()->id, trans('admin/permissions/general.audit-log.category'), trans('admin/permissions/general.audit-log.msg-store', ['name' => $attributes['name']]));
-
-        if ( array_key_exists('selected_routes', $attributes) ) {
+        Audit::log(Auth::user()->id, trans('admin/permissions/general.audit-log.category'),
+          trans('admin/permissions/general.audit-log.msg-store', ['name' => $attributes['name']]));
+        if (array_key_exists('selected_routes', $attributes)) {
             $attributes['routes'] = explode(",", $attributes['selected_routes']);
         }
-        if ( array_key_exists('selected_roles', $attributes) ) {
+        if (array_key_exists('selected_roles', $attributes)) {
             $attributes['roles'] = explode(",", $attributes['selected_roles']);
         }
-
         $perm = $this->permission->create($attributes);
         $perm->assignRoutes($attributes);
         $perm->assignRoles($attributes);
-
-        Flash::success( trans('admin/permissions/general.status.created') );
-
+        Flash::success(trans('admin/permissions/general.status.created'));
         return redirect('/admin/permissions');
     }
 
@@ -116,18 +108,15 @@ class PermissionsController extends Controller
     public function edit($id)
     {
         //TODO: Protect 'basic-authenticated', 'guest-only', 'open-to-all'
-
         $perm = $this->permission->find($id);
-
         $page_title = trans('admin/permissions/general.page.edit.title');
-        $page_description = trans('admin/permissions/general.page.edit.description', ['name' => $perm->name]); // "Editing permission";
-
-        if(!$perm->isEditable()) {
+        $page_description = trans('admin/permissions/general.page.edit.description',
+          ['name' => $perm->name]); // "Editing permission";
+        if (!$perm->isEditable()) {
             abort(403);
         }
-
-        Audit::log(Auth::user()->id, trans('admin/permissions/general.audit-log.category'), trans('admin/permissions/general.audit-log.msg-edit', ['name' => $perm->name]));
-
+        Audit::log(Auth::user()->id, trans('admin/permissions/general.audit-log.category'),
+          trans('admin/permissions/general.audit-log.msg-edit', ['name' => $perm->name]));
         return view('admin.permissions.edit', compact('perm', 'page_title', 'page_description'));
     }
 
@@ -139,32 +128,27 @@ class PermissionsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, array(    'name'          => 'required|unique:permissions,name,' . $id,
-                                            'display_name'  => 'required',
+        $this->validate($request, array(
+          'name' => 'required|unique:permissions,name,' . $id,
+          'display_name' => 'required',
         ));
-
         $perm = $this->permission->find($id);
-
-        if(!$perm->isEditable()) {
+        if (!$perm->isEditable()) {
             abort(403);
         }
-
-        Audit::log(Auth::user()->id, trans('admin/permissions/general.audit-log.category'), trans('admin/permissions/general.audit-log.msg-update', ['name' => $perm->name]));
-
+        Audit::log(Auth::user()->id, trans('admin/permissions/general.audit-log.category'),
+          trans('admin/permissions/general.audit-log.msg-update', ['name' => $perm->name]));
         $attributes = $request->all();
-        if ( array_key_exists('selected_routes', $attributes) ) {
+        if (array_key_exists('selected_routes', $attributes)) {
             $attributes['routes'] = explode(",", $attributes['selected_routes']);
         }
-        if ( array_key_exists('selected_roles', $attributes) ) {
+        if (array_key_exists('selected_roles', $attributes)) {
             $attributes['roles'] = explode(",", $attributes['selected_roles']);
         }
-
         $perm->update($request->all());
         $perm->assignRoutes($attributes);
         $perm->assignRoles($attributes);
-
-        Flash::success( trans('admin/permissions/general.status.updated') );
-
+        Flash::success(trans('admin/permissions/general.status.updated'));
         return redirect('/admin/permissions');
     }
 
@@ -175,46 +159,35 @@ class PermissionsController extends Controller
     public function destroy($id)
     {
         //TODO: Protect 'basic-authenticated', 'guest-only', 'open-to-all'
-
         $permission = $this->permission->find($id);
-
-        if(!$permission->isDeletable()) {
+        if (!$permission->isDeletable()) {
             abort(403);
         }
-
-        Audit::log(Auth::user()->id, trans('admin/permissions/general.audit-log.category'), trans('admin/permissions/general.audit-log.msg-destroy', ['name' => $permission->name]));
-
+        Audit::log(Auth::user()->id, trans('admin/permissions/general.audit-log.category'),
+          trans('admin/permissions/general.audit-log.msg-destroy', ['name' => $permission->name]));
         $this->permission->delete($id);
-
-        Flash::success( trans('admin/permissions/general.status.deleted') );
-
+        Flash::success(trans('admin/permissions/general.status.deleted'));
         return redirect('/admin/permissions');
     }
 
     /**
      * Delete Confirm
      *
-     * @param   int   $id
+     * @param   int $id
      * @return  View
      */
     public function getModalDelete($id)
     {
         //TODO: Protect 'basic-authenticated', 'guest-only', 'open-to-all'
-
         $error = null;
-
         $permission = $this->permission->find($id);
-
-        if(!$permission->isDeletable()) {
+        if (!$permission->isDeletable()) {
             abort(403);
         }
-
         $modal_title = trans('admin/permissions/dialog.delete-confirm.title');
-
         $modal_route = route('admin.permissions.delete', array('id' => $permission->id));
-
-        $modal_body = trans('admin/permissions/dialog.delete-confirm.body', ['id' => $permission->id, 'name' => $permission->name]);
-
+        $modal_body = trans('admin/permissions/dialog.delete-confirm.body',
+          ['id' => $permission->id, 'name' => $permission->name]);
         return view('modal_confirmation', compact('error', 'modal_route', 'modal_title', 'modal_body'));
     }
 
@@ -223,23 +196,23 @@ class PermissionsController extends Controller
      */
     public function generate()
     {
-        Audit::log(Auth::user()->id, trans('admin/permissions/general.audit-log.category'), trans('admin/permissions/general.audit-log.msg-generate'));
-
+        Audit::log(Auth::user()->id, trans('admin/permissions/general.audit-log.category'),
+          trans('admin/permissions/general.audit-log.msg-generate'));
         $routes = $this->route->all();
-
         $cnt = 0;
         foreach ($routes as $route) {
-            $name           = $route->path . '!' . $route->method;
+            $name = $route->path . '!' . $route->method;
             if (null == $this->permission->findBy('name', $name)) {
-                $this->permission->create( ['name' => $name,
-                                            'display_name' => $name,
-                                            'description' => 'Auto-generated from route: ' . $route->action_name]);
+                $this->permission->create([
+                  'name' => $name,
+                  'display_name' => $name,
+                  'description' => 'Auto-generated from route: ' . $route->action_name
+                ]);
                 $cnt = $cnt + 1;
 
             }
         }
-
-        Flash::success( trans('admin/permissions/general.status.generated', ['number' => $cnt]) );
+        Flash::success(trans('admin/permissions/general.status.generated', ['number' => $cnt]));
         return redirect('/admin/permissions');
     }
 
@@ -250,14 +223,11 @@ class PermissionsController extends Controller
     public function enable($id)
     {
         $permission = $this->permission->find($id);
-
-        Audit::log(Auth::user()->id, trans('admin/permissions/general.audit-log.category'), trans('admin/permissions/general.audit-log.msg-enable', ['name' => $permission->name]));
-
+        Audit::log(Auth::user()->id, trans('admin/permissions/general.audit-log.category'),
+          trans('admin/permissions/general.audit-log.msg-enable', ['name' => $permission->name]));
         $permission->enabled = true;
         $permission->save();
-
         Flash::success(trans('admin/permissions/general.status.enabled'));
-
         return redirect('/admin/permissions');
     }
 
@@ -268,16 +238,12 @@ class PermissionsController extends Controller
     public function disable($id)
     {
         //TODO: Should we protect 'basic-authenticated', 'guest-only', 'open-to-all'??
-
         $permission = $this->permission->find($id);
-
-        Audit::log(Auth::user()->id, trans('admin/permissions/general.audit-log.category'), trans('admin/permissions/general.audit-log.msg-disabled', ['name' => $permission->name]));
-
+        Audit::log(Auth::user()->id, trans('admin/permissions/general.audit-log.category'),
+          trans('admin/permissions/general.audit-log.msg-disabled', ['name' => $permission->name]));
         $permission->enabled = false;
         $permission->save();
-
         Flash::success(trans('admin/permissions/general.status.disabled'));
-
         return redirect('/admin/permissions');
     }
 
@@ -287,9 +253,8 @@ class PermissionsController extends Controller
     public function enableSelected(Request $request)
     {
         $chkPerms = $request->input('chkPerm');
-
-        Audit::log(Auth::user()->id, trans('admin/permissions/general.audit-log.category'), trans('admin/permissions/general.audit-log.msg-enabled-selected'), $chkPerms);
-
+        Audit::log(Auth::user()->id, trans('admin/permissions/general.audit-log.category'),
+          trans('admin/permissions/general.audit-log.msg-enabled-selected'), $chkPerms);
         if (isset($chkPerms)) {
             foreach ($chkPerms as $perm_id) {
                 $permission = $this->permission->find($perm_id);
@@ -309,11 +274,9 @@ class PermissionsController extends Controller
     public function disableSelected(Request $request)
     {
         //TODO: Should we protect 'basic-authenticated', 'guest-only', 'open-to-all'??
-
         $chkPerms = $request->input('chkPerm');
-
-        Audit::log(Auth::user()->id, trans('admin/permissions/general.audit-log.category'), trans('admin/permissions/general.audit-log.msg-disabled-selected'), $chkPerms);
-
+        Audit::log(Auth::user()->id, trans('admin/permissions/general.audit-log.category'),
+          trans('admin/permissions/general.audit-log.msg-disabled-selected'), $chkPerms);
         if (isset($chkPerms)) {
             foreach ($chkPerms as $perm_id) {
                 $permission = $this->permission->find($perm_id);

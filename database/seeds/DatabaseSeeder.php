@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,16 +13,13 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         Model::unguard();
-
         //$this->call('DevelopmentSeeder');
         $this->call('ProductionSeeder');
-
         // Example of how to call a seeder script for a given environment.
-//        if( App::environment() === 'development' )
-//        {
-//            $this->call('DevelopmentSeeder');
-//        }
-
+        //        if( App::environment() === 'development' )
+        //        {
+        //            $this->call('DevelopmentSeeder');
+        //        }
         Model::reguard();
     }
 }

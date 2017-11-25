@@ -6,7 +6,6 @@ namespace App\Facades;
  * @license GPLv3
  * @author Sebastien Routier (sroutier@gmail.com)
  */
-
 use Illuminate\Support\Facades\Facade;
 
 class SettingFacade extends Facade

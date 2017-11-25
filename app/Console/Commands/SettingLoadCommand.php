@@ -42,26 +42,23 @@ class SettingLoadCommand extends Command
     public function handle()
     {
         $envName = $this->argument('env');
-
         if (Str::isNullOrEmptyString($envName)) {
             $envName = env('APP_ENV', 'production');
         }
-
         try {
             $cnt = Setting::load($envName);
             Setting::save();
             if (0 == $cnt) {
                 $this->warn(trans('admin/settings/general.status.no-settings-loaded', ['env' => $envName]));
             } else {
-                $this->info(trans('admin/settings/general.status.settings-loaded', ['number' => $cnt, 'env' => $envName]));
+                $this->info(trans('admin/settings/general.status.settings-loaded',
+                  ['number' => $cnt, 'env' => $envName]));
             }
-        }
-        catch (FileNotFoundException $fnfx) {
+        } catch (FileNotFoundException $fnfx) {
             $this->error(trans('admin/settings/general.status.settings-file-not-found', ['env' => $envName]));
-        }
-        catch (\Exception $ex) {
-            $this->error("Exception: ". $ex->getMessage());
-            $this->error("Stack trace: ". $ex->getTraceAsString());
+        } catch (\Exception $ex) {
+            $this->error("Exception: " . $ex->getMessage());
+            $this->error("Stack trace: " . $ex->getTraceAsString());
         }
     }
 }

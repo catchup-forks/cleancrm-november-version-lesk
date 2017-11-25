@@ -4,7 +4,6 @@
  * @license GPLv3
  * @package Sroutier\MenuBuilder
  */
-
 use App\Models\Setting as SettingModel;
 use Illuminate\Foundation\Application;
 

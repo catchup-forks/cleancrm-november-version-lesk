@@ -1,6 +1,5 @@
 <?php
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Enabled
@@ -10,9 +9,7 @@ return [
     | the variable 'AUDIT_ENABLED' to true in your '.env' file.
     |
     */
-
-    'enabled' => env('audit.enabled', false),
-
+  'enabled' => env('audit.enabled', false),
     /*
     |--------------------------------------------------------------------------
     | Purge retention
@@ -22,8 +19,6 @@ return [
     | 365 days or one year.
     |
     */
-
-    'purge_retention' => env('audit.purge_retention', 365),
-
+  'purge_retention' => env('audit.purge_retention', 365),
 ];
 

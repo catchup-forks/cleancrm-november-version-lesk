@@ -4,7 +4,6 @@
  * @license GPLv3
  * @author Sebastien Routier (sroutier@gmail.com)
  */
-
 use App\Managers\SettingManager;
 use Illuminate\Support\ServiceProvider;
 
@@ -25,7 +24,7 @@ class SettingServiceProvider extends ServiceProvider
     public function register()
     {
         // Bind to the key 'Setting' to a closure instantiating to the SettingManager.
-        $this->app->bind('Setting', function($app) {
+        $this->app->bind('Setting', function ($app) {
             return new SettingManager($app);
         });
     }

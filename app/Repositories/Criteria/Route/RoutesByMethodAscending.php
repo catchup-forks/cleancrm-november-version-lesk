@@ -1,10 +1,10 @@
 <?php namespace App\Repositories\Criteria\Route;
 
-use Bosnadev\Repositories\Criteria\Criteria;
 use Bosnadev\Repositories\Contracts\RepositoryInterface as Repository;
+use Bosnadev\Repositories\Criteria\Criteria;
 
-class RoutesByMethodAscending extends Criteria {
-
+class RoutesByMethodAscending extends Criteria
+{
 
     /**
      * @param $model
@@ -12,7 +12,7 @@ class RoutesByMethodAscending extends Criteria {
      *
      * @return mixed
      */
-    public function apply( $model, Repository $repository )
+    public function apply($model, Repository $repository)
     {
         $model = $model->orderBy('method', 'ASC');
         return $model;

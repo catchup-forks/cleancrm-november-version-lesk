@@ -1,7 +1,5 @@
 <?php
-
 return array(
-
     /*
     |--------------------------------------------------------------------------
     | Enabled
@@ -11,10 +9,7 @@ return array(
     | the variable 'WALLED_GARDEN_ENABLED' to true in your '.env' file.
     |
     */
-
-    'enabled' => env('walled-garden.enabled', false),
-
-
+  'enabled' => env('walled-garden.enabled', false),
     /*
     |--------------------------------------------------------------------------
     | Path to exempt from the walled garden
@@ -24,14 +19,19 @@ return array(
     | register, recover passwords or debug.
     |
     */
-    'exemptions-path' => [
-        '/',                'home',                            'faust',
-        'auth/login',       'auth/register',                   'auth/verify',
-        'password/email',   'password/reset',
-        '_debugbar/open',   '_debugbar/assets/stylesheets',    '_debugbar/assets/javascript',
-    ],
-
-
+  'exemptions-path' => [
+    '/',
+    'home',
+    'faust',
+    'auth/login',
+    'auth/register',
+    'auth/verify',
+    'password/email',
+    'password/reset',
+    '_debugbar/open',
+    '_debugbar/assets/stylesheets',
+    '_debugbar/assets/javascript',
+  ],
     /*
     |--------------------------------------------------------------------------
     | Path to exempt from the walled garden based on Regular Expression
@@ -41,9 +41,8 @@ return array(
     | Expressions.
     |
     */
-    'exemptions-regex' => [
-        '/password\/reset\/.*/',
-        '/auth\/verify\/.*/',
-    ],
-
+  'exemptions-regex' => [
+    '/password\/reset\/.*/',
+    '/auth\/verify\/.*/',
+  ],
 );

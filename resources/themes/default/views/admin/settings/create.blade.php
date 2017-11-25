@@ -4,25 +4,26 @@
 @endsection
 
 @section('content')
-    <div class='row'>
-        <div class='col-md-12'>
-            <div class="box-body">
+  <div class='row'>
+    <div class='col-md-12'>
+      <div class="box-body">
 
-                {!! Form::open( ['route' => 'admin.settings.store', 'id' => 'form_edit_setting'] ) !!}
+        {!! Form::open( ['route' => 'admin.settings.store', 'id' => 'form_edit_setting'] ) !!}
 
-                    @include('partials._setting_form')
+        @include('partials._setting_form')
 
-                    <div class="form-group">
-                        {!! Form::submit( trans('general.button.create'), ['class' => 'btn btn-primary', 'id' => 'btn-submit-edit'] ) !!}
-                        <a href="{!! route('admin.settings.index') !!}" title="{{ trans('general.button.cancel') }}" class='btn btn-default'>{{ trans('general.button.cancel') }}</a>
-                    </div>
+        <div class="form-group">
+          {!! Form::submit( trans('general.button.create'), ['class' => 'btn btn-primary', 'id' => 'btn-submit-edit'] ) !!}
+          <a href="{!! route('admin.settings.index') !!}" title="{{ trans('general.button.cancel') }}"
+             class='btn btn-default'>{{ trans('general.button.cancel') }}</a>
+        </div>
 
-                {!! Form::close() !!}
+        {!! Form::close() !!}
 
-            </div><!-- /.box-body -->
-        </div><!-- /.col -->
+      </div><!-- /.box-body -->
+    </div><!-- /.col -->
 
-    </div><!-- /.row -->
+  </div><!-- /.row -->
 @endsection
 
 @section('body_bottom')

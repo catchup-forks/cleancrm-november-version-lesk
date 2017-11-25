@@ -1,7 +1,5 @@
 <?php
-
 return array(
-
     /*
     |--------------------------------------------------------------------------
     | Theme name
@@ -10,9 +8,7 @@ return array(
     | Use in assets publishing etc
     |
     */
-
-    'name' => 'default',
-
+  'name' => 'default',
     /*
     |--------------------------------------------------------------------------
     | Inherit from another theme
@@ -21,8 +17,5 @@ return array(
     | Set up inherit from another if the file is not exists
     |
     */
-
-    'inherit' => null,
-
-
+  'inherit' => null,
 );

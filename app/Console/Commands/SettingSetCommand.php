@@ -44,10 +44,9 @@ class SettingSetCommand extends Command
     {
         try {
             if ($key = $this->argument('key')) {
-                $message="";
+                $message = "";
                 $value = $this->argument('value');
                 $encrypt = $this->option('encrypt');
-
                 if (Str::isNullOrEmptyString($value)) {
                     if ($encrypt) {
                         $value = $this->secret('Enter secret value:');
@@ -59,7 +58,6 @@ class SettingSetCommand extends Command
                 } else {
                     $message = "Setting [$key] set to [$value].";
                 }
-
                 Setting::set($key, $value, $encrypt);
                 Setting::save();
                 $this->info($message);
@@ -67,8 +65,8 @@ class SettingSetCommand extends Command
                 $this->error("Missing 'key' argument.");
             }
         } catch (\Exception $ex) {
-            $this->error("Exception: ". $ex->getMessage());
-            $this->error("Stack trace: ". $ex->getTraceAsString());
+            $this->error("Exception: " . $ex->getMessage());
+            $this->error("Stack trace: " . $ex->getTraceAsString());
         }
     }
 }

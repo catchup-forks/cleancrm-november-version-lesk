@@ -26,13 +26,11 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         $homeRouteName = 'welcome';
-
         try {
             $homeCandidateName = Setting::get('app.home_route');
             $homeRouteName = $homeCandidateName;
-        }
-        catch (Exception $ex) { } // Eat the exception will default to the welcome route.
-
+        } catch (Exception $ex) {
+        } // Eat the exception will default to the welcome route.
         $request->session()->reflash();
         return Redirect::route($homeRouteName);
     }
@@ -44,8 +42,7 @@ class HomeController extends Controller
     {
         $page_title = trans('general.text.welcome');
         $page_description = "This is the welcome page";
-
-//        $request->flashExcept(['password', 'password_confirmation']);
+        //        $request->flashExcept(['password', 'password_confirmation']);
         $request->session()->reflash();
         return view('welcome', compact('page_title', 'page_description'));
     }

@@ -20,7 +20,7 @@ class Handler extends ExceptionHandler
      * @var array
      */
     protected $dontReport = [
-        \Symfony\Component\HttpKernel\Exception\HttpException::class,
+      \Symfony\Component\HttpKernel\Exception\HttpException::class,
     ];
 
     /**
@@ -28,7 +28,7 @@ class Handler extends ExceptionHandler
      *
      * This is a great spot to send exceptions to Sentry, Bugsnag, etc.
      *
-     * @param  \Exception  $e
+     * @param  \Exception $e
      * @return void
      */
     public function report(Exception $e)
@@ -40,11 +40,9 @@ class Handler extends ExceptionHandler
 
                 $lernRecordEnabled = Setting::get('lern.enable_record');
                 $lernNotifyEnabled = Setting::get('lern.enable_notify');
-
                 if ($lernRecordEnabled) {
                     LERN::record($e); //Record the Exception to the database
                 }
-
                 if ($lernNotifyEnabled) {
                     $this->setLERNNotificationFormat(); // Set some formatting options
                     LERN::notify($e); //Notify the Exception
@@ -52,28 +50,14 @@ class Handler extends ExceptionHandler
 
             }
         }
-
         return parent::report($e);
     }
-
-    /**
-     * Render an exception into an HTTP response.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Exception  $e
-     * @return \Illuminate\Http\Response
-     */
-    public function render($request, Exception $e)
-    {
-        return parent::render($request, $e);
-    }
-
 
     private function setLERNNotificationFormat()
     {
         //Change the subject
-        LERN::setSubject("[" . Setting::get('lern.notify.channel') . "]: An Exception was thrown! (" . date("D M d, Y G:i", time()) . " UTC)");
-
+        LERN::setSubject("[" . Setting::get('lern.notify.channel') . "]: An Exception was thrown! (" . date("D M d, Y G:i",
+            time()) . " UTC)");
         //Change the message body
         LERN::setMessage(function (Exception $exception) {
             $url = Request::url();
@@ -105,30 +89,39 @@ class Handler extends ExceptionHandler
             } else {
                 $input = "";
             }
-
             $exception_trace_formatted = [];
             foreach ($exception->getTrace() as $trace) {
                 $formatted_trace = "";
-
                 if (isset($trace['function']) && isset($trace['class'])) {
-                    $formatted_trace = sprintf('at %s%s%s(...)', Utils::formatClass($trace['class']), $trace['type'], $trace['function']);
-                }
-                else if (isset($trace['function'])) {
-                    $formatted_trace = sprintf('at %s(...)', $trace['function']);
+                    $formatted_trace = sprintf('at %s%s%s(...)', Utils::formatClass($trace['class']), $trace['type'],
+                      $trace['function']);
+                } else {
+                    if (isset($trace['function'])) {
+                        $formatted_trace = sprintf('at %s(...)', $trace['function']);
+                    }
                 }
                 if (isset($trace['file']) && isset($trace['line'])) {
                     $formatted_trace .= Utils::formatPath($trace['file'], $trace['line']);
                 }
                 $exception_trace_formatted[] = $formatted_trace;
             }
-
             $view = View::make('emails.html.lern_notification', compact('url', 'method', 'user_id', 'user_name',
-                'user_first_name', 'user_last_name', 'exception_class', 'exception_file', 'exception_line',
-                'exception_message', 'exception_trace', 'exception_trace_formatted', 'input'));
-
+              'user_first_name', 'user_last_name', 'exception_class', 'exception_file', 'exception_line',
+              'exception_message', 'exception_trace', 'exception_trace_formatted', 'input'));
             $msg = $view->render();
-
             return $msg;
         });
+    }
+
+    /**
+     * Render an exception into an HTTP response.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @param  \Exception $e
+     * @return \Illuminate\Http\Response
+     */
+    public function render($request, Exception $e)
+    {
+        return parent::render($request, $e);
     }
 }

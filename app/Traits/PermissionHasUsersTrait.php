@@ -15,15 +15,13 @@ trait PermissionHasUsersTrait
     public static function boot()
     {
         parent::boot();
-
-        static::deleting(function($permission) {
+        static::deleting(function ($permission) {
             if (!method_exists(Config::get('entrust.permission'), 'bootSoftDeletingTrait')) {
                 // Repeat role->sync code attached from EntrustPermissionTrait::boot() as this boot()
                 // function overwrites it.
                 $permission->roles()->sync([]);
                 $permission->users()->sync([]);
             }
-
             return true;
         });
     }
@@ -45,10 +43,8 @@ trait PermissionHasUsersTrait
      */
     public function hasUser($userName)
     {
-        foreach($this->users as $user)
-        {
-            if($user->username == $userName)
-            {
+        foreach ($this->users as $user) {
+            if ($user->username == $userName) {
                 return true;
             }
         }
@@ -62,6 +58,5 @@ trait PermissionHasUsersTrait
     {
         return ($this->users->count() > 0);
     }
-
 
 }

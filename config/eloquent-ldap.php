@@ -1,6 +1,5 @@
 <?php
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Enabled
@@ -10,9 +9,7 @@ return [
     | the variable 'LDAP_ENABLED' to true in your '.env' file.
     |
     */
-
-    'enabled' => env('eloquent-ldap.enabled', false),
-
+  'enabled' => env('eloquent-ldap.enabled', false),
     /*
     |--------------------------------------------------------------------------
     | Debug
@@ -22,9 +19,7 @@ return [
     | combined with a packet sniffer to debug connectivity issues.
     |
     */
-
-    'debug' => env('eloquent-ldap.debug', 'false'),
-
+  'debug' => env('eloquent-ldap.debug', 'false'),
     /*
     |--------------------------------------------------------------------------
     | Server type
@@ -34,9 +29,7 @@ return [
     | servers, or MSAD for Microsoft Active Directory servers.
     |
     */
-
-    'server_type' => env('eloquent-ldap.server_type', 'MSAD'),
-
+  'server_type' => env('eloquent-ldap.server_type', 'MSAD'),
     /*
     |--------------------------------------------------------------------------
     | Automatically create new accounts on first login
@@ -47,9 +40,7 @@ return [
     | LDAP/AD server. This behaviour is set to true by default.
     |
     */
-
-    'create_accounts' => env('eloquent-ldap.create_accounts', true),
-
+  'create_accounts' => env('eloquent-ldap.create_accounts', true),
     /*
     |--------------------------------------------------------------------------
     | Automatically replicate group membership
@@ -63,9 +54,7 @@ return [
     | existing groups with the same name.
     |
     */
-
-    'replicate_group_membership' => env('eloquent-ldap.replicate_group_membership', true),
-
+  'replicate_group_membership' => env('eloquent-ldap.replicate_group_membership', true),
     /*
     |--------------------------------------------------------------------------
     | Automatically resync group membership on login
@@ -78,9 +67,7 @@ return [
     | existing groups with the same name.
     |
     */
-
-    'resync_on_login' => env('eloquent-ldap.resync_on_login', true),
-
+  'resync_on_login' => env('eloquent-ldap.resync_on_login', true),
     /*
     |--------------------------------------------------------------------------
     | Group model
@@ -93,9 +80,7 @@ return [
     | '\config\auth.php' configuration file.
     |
     */
-
-    'group_model' => env('eloquent-ldap.group_model', App\Models\Group::class),
-
+  'group_model' => env('eloquent-ldap.group_model', App\Models\Group::class),
     /*
     |--------------------------------------------------------------------------
     | Internal label
@@ -107,9 +92,7 @@ return [
     | an aut_type of this value and null or unset to be internal.
     |
     */
-
-    'label_internal' => env('eloquent-ldap.label_internal', 'internal'),
-
+  'label_internal' => env('eloquent-ldap.label_internal', 'internal'),
     /*
     |--------------------------------------------------------------------------
     | LDAP label
@@ -119,9 +102,7 @@ return [
     | originating from the LDAP server.
     |
     */
-
-    'label_ldap' => env('eloquent-ldap.label_ldap', 'ldap'),
-
+  'label_ldap' => env('eloquent-ldap.label_ldap', 'ldap'),
     /*
     |--------------------------------------------------------------------------
     | Account suffix
@@ -132,9 +113,7 @@ return [
     | can be your domain name, preceded by the "@" sign.
     |
     */
-
-    'account_suffix' => env('eloquent-ldap.account_suffix', "@company.com"),
-
+  'account_suffix' => env('eloquent-ldap.account_suffix', "@company.com"),
     /*
     |--------------------------------------------------------------------------
     | Base DN
@@ -143,9 +122,7 @@ return [
     | Enter the LDAP/AD "Base DN" to bind to.
     |
     */
-
-    'base_dn' => env('eloquent-ldap.base_dn', "DC=department,DC=company,DC=com"),
-
+  'base_dn' => env('eloquent-ldap.base_dn', "DC=department,DC=company,DC=com"),
     /*
     |--------------------------------------------------------------------------
     | Server
@@ -155,9 +132,7 @@ return [
     | controller.
     |
     */
-
-    'server' => [ env('eloquent-ldap.server', "ldapsrv01.company.com") ],
-
+  'server' => [env('eloquent-ldap.server', "ldapsrv01.company.com")],
     /*
     |--------------------------------------------------------------------------
     | Port
@@ -166,9 +141,7 @@ return [
     | Enter the TCP port number to connect to your AD/LDAP server.
     |
     */
-
-    'port' => env('eloquent-ldap.port', 389),
-
+  'port' => env('eloquent-ldap.port', 389),
     /*
     |--------------------------------------------------------------------------
     | User name
@@ -177,9 +150,7 @@ return [
     | Enter the name of the user that will query the AD/LDAP server.
     |
     */
-
-    'user_name' => env('eloquent-ldap.user_name', "ldap_reader"),
-
+  'user_name' => env('eloquent-ldap.user_name', "ldap_reader"),
     /*
     |--------------------------------------------------------------------------
     | Password
@@ -188,9 +159,7 @@ return [
     | Enter the password of the user that will query the AD/LDAP server.
     |
     */
-
-    'password' => env('eloquent-ldap.password', "PaSsWoRd"),
-
+  'password' => env('eloquent-ldap.password', "PaSsWoRd"),
     /*
     |--------------------------------------------------------------------------
     | Return real primary group
@@ -200,9 +169,7 @@ return [
     | primary group, may incur extra processing.
     |
     */
-
-    'return_real_primary_group' => env('eloquent-ldap.return_real_primary_group', true),
-
+  'return_real_primary_group' => env('eloquent-ldap.return_real_primary_group', true),
     /*
     |--------------------------------------------------------------------------
     | Enable encryption?
@@ -214,9 +181,7 @@ return [
     | Supported values: false, "ssl", "tls"
     |
     */
-
-    'secured' => env('eloquent-ldap.secured', false),
-
+  'secured' => env('eloquent-ldap.secured', false),
     /*
     |--------------------------------------------------------------------------
     | Secured port
@@ -225,9 +190,7 @@ return [
     | Enter the port number to use when using secured communications.
     |
     */
-
-    'secured_port' => env('eloquent-ldap.secured_port', 636),
-
+  'secured_port' => env('eloquent-ldap.secured_port', 636),
     /*
     |--------------------------------------------------------------------------
     | Resolve all group membership?
@@ -238,9 +201,7 @@ return [
     | processing.
     |
     */
-
-    'recursive_groups' => env('eloquent-ldap.recursive_groups', false),
-
+  'recursive_groups' => env('eloquent-ldap.recursive_groups', false),
     /*
     |--------------------------------------------------------------------------
     | Single sign-on
@@ -252,9 +213,7 @@ return [
     | TODO: Implement SSO!
     |
     */
-
-    'sso' => env('eloquent-ldap.sso', false),
-
+  'sso' => env('eloquent-ldap.sso', false),
     /*
     |--------------------------------------------------------------------------
     | User name field
@@ -263,9 +222,7 @@ return [
     | Enter the name of the field that will contain the user name.
     |
     */
-
-    'username_field' => env('eloquent-ldap.username_field', "samaccountname"),
-
+  'username_field' => env('eloquent-ldap.username_field', "samaccountname"),
     /*
     |--------------------------------------------------------------------------
     | Email field
@@ -274,9 +231,7 @@ return [
     | Enter the name of the field that will contain the user's email address.
     |
     */
-
-    'email_field' => env('eloquent-ldap.email_field', "userprincipalname"),
-
+  'email_field' => env('eloquent-ldap.email_field', "userprincipalname"),
     /*
     |--------------------------------------------------------------------------
     | First name field
@@ -285,9 +240,7 @@ return [
     | Enter the name of the field that will contain the user's first name.
     |
     */
-
-    'first_name_field' => env('eloquent-ldap.first_name_field', "givenname"),
-
+  'first_name_field' => env('eloquent-ldap.first_name_field', "givenname"),
     /*
     |--------------------------------------------------------------------------
     | Title
@@ -296,10 +249,7 @@ return [
     | Enter the name of the field that will contain the user's last name.
     |
     */
-
-    'last_name_field' => env('eloquent-ldap.last_name_field', "sn"),
-
-
+  'last_name_field' => env('eloquent-ldap.last_name_field', "sn"),
     /*
     |--------------------------------------------------------------------------
     | User query filter
@@ -314,9 +264,6 @@ return [
     | correct value when executed.
     |
     */
-
-    'user_filter' => env('eloquent-ldap.user_filter', "(&(objectcategory=person)(samaccountname=%username))"),
-
-
+  'user_filter' => env('eloquent-ldap.user_filter', "(&(objectcategory=person)(samaccountname=%username))"),
 ];
 

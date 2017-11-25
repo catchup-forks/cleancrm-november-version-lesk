@@ -6,9 +6,7 @@
  * @license GPLv3
  * @package Sroutier\MenuBuilder
  */
-
 return array(
-
     /*
     |--------------------------------------------------------------------------
     | Framework handler
@@ -17,8 +15,6 @@ return array(
     | The class that helps built the HTML/CSS for the chosen framework.
     |
     */
-
-    'framework_handler' => env('menu-builder.framework_handler', 'App\Handlers\LESKSecuredMenuHandler'),
-
+  'framework_handler' => env('menu-builder.framework_handler', 'App\Handlers\LESKSecuredMenuHandler'),
 );
 

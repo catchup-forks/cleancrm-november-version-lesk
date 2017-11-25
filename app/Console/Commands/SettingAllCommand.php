@@ -42,14 +42,13 @@ class SettingAllCommand extends Command
         try {
             $settings = Setting::all();
             $settings = Arr::dot($settings);
-
-            foreach($settings as $key => $value) {
+            foreach ($settings as $key => $value) {
                 $this->line("$key=$value");
             }
 
         } catch (\Exception $ex) {
-            $this->error("Exception: ". $ex->getMessage());
-            $this->error("Stack trace: ". $ex->getTraceAsString());
+            $this->error("Exception: " . $ex->getMessage());
+            $this->error("Stack trace: " . $ex->getTraceAsString());
         }
     }
 }

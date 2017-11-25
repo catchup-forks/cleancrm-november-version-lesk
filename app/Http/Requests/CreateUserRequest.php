@@ -1,8 +1,7 @@
 <?php namespace App\Http\Requests;
 
-use App\Http\Requests\Request;
-
-class CreateUserRequest extends Request {
+class CreateUserRequest extends Request
+{
 
     /**
      * Determine if the user is authorized to make this request.
@@ -22,9 +21,9 @@ class CreateUserRequest extends Request {
     public function rules()
     {
         return [
-            'email'    => 'required|unique:users',
-            'username' => 'required|unique:users',
-            'password' => 'required|confirmed',
+          'email' => 'required|unique:users',
+          'username' => 'required|unique:users',
+          'password' => 'required|confirmed',
         ];
     }
 

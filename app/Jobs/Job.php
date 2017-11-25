@@ -16,6 +16,5 @@ abstract class Job
     | provides access to the "queueOn" and "delay" queue helper methods.
     |
     */
-
     use Queueable;
 }

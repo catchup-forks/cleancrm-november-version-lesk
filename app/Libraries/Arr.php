@@ -22,7 +22,6 @@ class Arr extends BaseArr
                 $value = ucfirst($value);
             }
         }
-
         return array_combine($keys, $values);
     }
 
@@ -37,13 +36,11 @@ class Arr extends BaseArr
     public static function remove_value(array $array, $values)
     {
         $values = is_array($values) ? $values : [$values];
-
-        foreach($values as $val) {
-            if(($key = array_search($val, $array)) !== false) {
+        foreach ($values as $val) {
+            if (($key = array_search($val, $array)) !== false) {
                 unset($array[$key]);
             }
         }
-
         return $array;
     }
 }

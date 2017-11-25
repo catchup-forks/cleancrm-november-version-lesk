@@ -1,6 +1,6 @@
 <!-- Sidebar Menu -->
 <ul class="sidebar-menu">
 
-    {!! $menuContent !!}
+  {!! $menuContent !!}
 
 </ul><!-- /.sidebar-menu -->

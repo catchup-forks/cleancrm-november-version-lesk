@@ -1,5 +1,4 @@
 <?php
-
 /**
  * This file is part of Entrust,
  * a role & permission management solution for Laravel.
@@ -7,9 +6,7 @@
  * @license MIT
  * @package Zizaco\Entrust
  */
-
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Entrust Role Model
@@ -19,8 +16,7 @@ return [
     | the role if it is in a different namespace.
     |
     */
-    'role' => 'App\Models\Role',
-
+  'role' => 'App\Models\Role',
     /*
     |--------------------------------------------------------------------------
     | Entrust Roles Table
@@ -29,8 +25,7 @@ return [
     | This is the roles table used by Entrust to save roles to the database.
     |
     */
-    'roles_table' => 'roles',
-
+  'roles_table' => 'roles',
     /*
     |--------------------------------------------------------------------------
     | Entrust Permission Model
@@ -40,8 +35,7 @@ return [
     | Update the permission if it is in a different namespace.
     |
     */
-    'permission' => 'App\Models\Permission',
-
+  'permission' => 'App\Models\Permission',
     /*
     |--------------------------------------------------------------------------
     | Entrust Permissions Table
@@ -51,8 +45,7 @@ return [
     | database.
     |
     */
-    'permissions_table' => 'permissions',
-
+  'permissions_table' => 'permissions',
     /*
     |--------------------------------------------------------------------------
     | Entrust permission_role Table
@@ -62,8 +55,7 @@ return [
     | between permissions and roles to the database.
     |
     */
-    'permission_role_table' => 'permission_role',
-
+  'permission_role_table' => 'permission_role',
     /*
     |--------------------------------------------------------------------------
     | Entrust role_user Table
@@ -73,6 +65,5 @@ return [
     | database.
     |
     */
-    'role_user_table' => 'role_user',
-
+  'role_user_table' => 'role_user',
 ];

@@ -1,10 +1,10 @@
 <?php namespace App\Repositories\Criteria\Permission;
 
-use Bosnadev\Repositories\Criteria\Criteria;
 use Bosnadev\Repositories\Contracts\RepositoryInterface as Repository;
+use Bosnadev\Repositories\Criteria\Criteria;
 
-class PermissionsByNamesAscending extends Criteria {
-
+class PermissionsByNamesAscending extends Criteria
+{
 
     /**
      * @param $model
@@ -12,7 +12,7 @@ class PermissionsByNamesAscending extends Criteria {
      *
      * @return mixed
      */
-    public function apply( $model, Repository $repository )
+    public function apply($model, Repository $repository)
     {
         $model = $model->orderBy('name', 'ASC');
         return $model;
